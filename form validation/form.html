@@ -19,7 +19,7 @@
       const error = document.getElementById('error');
 
       const emailRegex = /^[A-Za-z0-9._%+-]+@gmail\.com$/;
-      const passwordRegex = /^[A-Za-z0-9]+$/;
+      const passwordRegex = /^[A-Za-z]+[0-9]+$/;
 
       if (!emailRegex.test(email)) {
         error.textContent = "Email must be a valid gmail address (e.g. user@gmail.com)";
@@ -27,11 +27,17 @@
       }
 
       if (!passwordRegex.test(password)) {
-        error.textContent = "Password must be alphanumeric";
+        error.textContent = "Password must be alphabets followed by at least one number and alphabets again";
         return false;
       }
 
+      if (password.length < 8) {
+        error.textContent = "Password must be at least 8 characters long";
+        return false;
+      }
       error.textContent = "";
+      alert("Form submitted successfully!");
+      
       return true;
     }
   </script>
