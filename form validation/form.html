@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Form Validation</title>
+</head>
+<body>
+  <h3>Simple Form</h3>
+  <form onsubmit="return validateForm()">
+    Email: <input type="text" id="email"><br><br>
+    Password: <input type="text" id="password"><br><br>
+    <input type="submit" value="Submit">
+    <p id="error" style="color:red;"></p>
+  </form>
+
+  <script>
+    function validateForm() {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const error = document.getElementById('error');
+
+      const emailRegex = /^[A-Za-z0-9._%+-]+@gmail\.com$/;
+      const passwordRegex = /^[A-Za-z0-9]+$/;
+
+      if (!emailRegex.test(email)) {
+        error.textContent = "Email must be a valid gmail address (e.g. user@gmail.com)";
+        return false;
+      }
+
+      if (!passwordRegex.test(password)) {
+        error.textContent = "Password must be alphanumeric";
+        return false;
+      }
+
+      error.textContent = "";
+      return true;
+    }
+  </script>
+</body>
+</html>
